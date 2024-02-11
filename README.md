@@ -1,4 +1,7 @@
 # University Management System
+### Packages used for this project
+- Laravel Breeze
+- Spatie Laravel-Permission
 ### Installation Command
 ```
 composer install
