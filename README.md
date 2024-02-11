@@ -1,7 +1,7 @@
 # University Management System
 ### Packages used for this project
-- Laravel Breeze
-- Spatie Laravel-Permission
+- [Laravel Breeze](https://laravel.com/docs/10.x/starter-kits)
+- [Spatie Laravel-Permission](https://spatie.be/index.php/docs/laravel-permission/v6/introduction)
 ### Installation Command
 ```
 composer install
