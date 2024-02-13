@@ -23,7 +23,11 @@
                                     </td>
                                     <td class="flex gap-6 justify-end">
                                         <a href="{{ route('admin.permissions.edit', $permission->id) }}" class="btn bg-blue-700 text-white">Edit</a>
-                                        <a href="" class="btn bg-red-700 border-none text-white">Delete</a>
+                                        <form action="{{ route('admin.permissions.destroy', $permission->id) }}" method="POST" onsubmit="return confirm('Are you sure?');">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn bg-red-700 border-none text-white">Delete</button>
+                                        </form>
                                     </td>
                                 </tr>
                             @endforeach

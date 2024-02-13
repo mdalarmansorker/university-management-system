@@ -33,7 +33,7 @@ class PermissionController extends Controller
         $validated = $request->validate(['name' => ['required', 'min:4']]);
 
         Permission::create($validated);
-        return to_route('admin.permissions.index');
+        return to_route('admin.permissions.index')->with('message', 'Permission created successfully.');
     }
 
     /**
@@ -59,14 +59,15 @@ class PermissionController extends Controller
     {
         $validated = $request->validate(['name' => ['required', 'min:4']]);
         $permission->update($validated);
-        return to_route('admin.permissions.index');
+        return to_route('admin.permissions.index')->with('message', 'Permission updated successfully.');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Permission $permission)
     {
-        //
+        $permission->delete();
+        return back()->with('message', 'Permission deleted successfully!');
     }
 }

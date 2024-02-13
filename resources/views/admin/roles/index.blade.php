@@ -23,8 +23,12 @@
                                     </td>
                                     <td class="flex gap-6 justify-end">
                                         <a href="{{ route('admin.roles.edit', $role->id) }}" class="btn bg-blue-700 text-white">Edit</a>
-                                        <a href="" class="btn bg-red-700 border-none text-white">Delete</a>
-                                    </td>
+                                        <form action="{{ route('admin.roles.destroy', $role->id) }}" method="POST" onsubmit="return confirm('Are you sure?');">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn bg-red-700 border-none text-white">Delete</button>
+                                        </form>
+                                    </td>                                    </td>
                                 </tr>
                             @endforeach
                         

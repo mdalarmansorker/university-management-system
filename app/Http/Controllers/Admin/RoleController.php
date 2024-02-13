@@ -13,7 +13,7 @@ class RoleController extends Controller
      */
     public function index()
     {
-        $roles = Role::all();
+        $roles = Role::whereNotIn('name', ['admin'])->get();
         return view('admin.roles.index', compact('roles'));
     }
 
@@ -33,7 +33,7 @@ class RoleController extends Controller
         $validated = $request->validate(['name' => ['required', 'min:3']]);
 
         Role::create($validated);
-        return to_route('admin.roles.index');
+        return to_route('admin.roles.index')->with('message', 'Role stored successfully.');
     }
 
     /**
@@ -59,14 +59,15 @@ class RoleController extends Controller
     {
         $validated = $request->validate(['name' => ['required', 'min:3']]);
         $role->update($validated);
-        return to_route('admin.roles.index');
+        return to_route('admin.roles.index')->with('message', 'Role updated successfully.');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Role $role)
     {
-        //
+        $role->delete();
+        return back()->with('message', 'Role deleted successfully!');
     }
 }
